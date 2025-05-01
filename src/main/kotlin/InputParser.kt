@@ -46,7 +46,7 @@ object InputParser {
                             repeat(splitAmongUsersCount) {
                                 splitPercent.add(args[index++].toDouble())
                             }
-                            commandDtoList.add(AddExactExpensesDto(paidByUserId, amountPaid, splitAmongUserIds, splitPercent))
+                            commandDtoList.add(AddPercentExpensesDto(paidByUserId, amountPaid, splitAmongUserIds, splitPercent))
                         }
                     }
                 }
