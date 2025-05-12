@@ -1,10 +1,10 @@
 package dto
 
-import model.enums.ExpenseType
+import model.enums.SplitType
 
-data class AddPercentExpensesDto(
+data class PercentExpensesDto(
     override val paidByUserId: String,
     override val amount: Double,
     override val splitAmongUserIds: List<String>,
     val splitPercent: List<Double>,
-) : AddExpenseDto(paidByUserId, amount, splitAmongUserIds, ExpenseType.PERCENT)
+) : ExpenseDto(paidByUserId, amount, splitAmongUserIds, SplitType.PERCENT)

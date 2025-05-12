@@ -1,5 +1,5 @@
 package dto
 
-import model.enums.CommandType
+import model.enums.BalanceType
 
-class ShowAllBalancesDto : CommandDto(CommandType.SHOW_ALL_BALANCES)
+class ShowAllBalancesDto : ShowBalanceDto(BalanceType.ALL_BALANCES)

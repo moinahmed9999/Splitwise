@@ -1,7 +1,8 @@
 package model.enums
 
-enum class ExpenseType {
+enum class SplitType {
     EQUAL,
     EXACT,
     PERCENT,
+    SHARE,
 }

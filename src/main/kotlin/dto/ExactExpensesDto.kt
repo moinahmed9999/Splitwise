@@ -1,10 +1,10 @@
 package dto
 
-import model.enums.ExpenseType
+import model.enums.SplitType
 
-data class AddExactExpensesDto(
+data class ExactExpensesDto(
     override val paidByUserId: String,
     override val amount: Double,
     override val splitAmongUserIds: List<String>,
     val exactSplitAmount: List<Double>,
-) : AddExpenseDto(paidByUserId, amount, splitAmongUserIds, ExpenseType.EXACT)
+) : ExpenseDto(paidByUserId, amount, splitAmongUserIds, SplitType.EXACT)

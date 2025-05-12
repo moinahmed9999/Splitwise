@@ -1,10 +1,13 @@
-import command.CommandExecutorFactory
-import entity.Balances
+import service.BalanceService
+import service.CommandProcessorService
+import service.ExpenseService
 
 fun main(args: Array<String>) {
     val commands = InputParser.parse()
-    val balances = Balances(mutableMapOf())
-    commands.forEach {
-        CommandExecutorFactory.getCommandExecutor(it).execute(it, balances)
-    }
+
+    val balanceService = BalanceService()
+    val expenseService = ExpenseService(balanceService)
+    val commandProcessorService = CommandProcessorService(expenseService, balanceService)
+
+    commandProcessorService.processCommands(commands)
 }

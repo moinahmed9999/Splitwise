@@ -1,7 +1,7 @@
 package dto
 
-import model.enums.CommandType
+import model.enums.BalanceType
 
 data class ShowUserBalancesDto(
     val userId: String,
-) : CommandDto(CommandType.SHOW_USER_BALANCES)
+) : ShowBalanceDto(BalanceType.USER_BALANCES)

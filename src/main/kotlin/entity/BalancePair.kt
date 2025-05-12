@@ -1,6 +1,6 @@
 package entity
 
 data class BalancePair(
-    val owedBy: String,
-    val owedTo: String,
+    val owedBy: User,
+    val owedTo: User,
 )

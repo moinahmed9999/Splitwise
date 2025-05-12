@@ -1,5 +1,5 @@
 import dto.*
-import model.enums.ExpenseType
+import model.enums.SplitType
 
 object InputParser {
     fun parse(): List<CommandDto> {
@@ -29,24 +29,31 @@ object InputParser {
                         splitAmongUserIds.add(args[index++])
                     }
 
-                    val expenseType = ExpenseType.valueOf(args[index++])
-                    when (expenseType) {
-                        ExpenseType.EQUAL -> {
-                            commandDtoList.add(AddEqualExpensesDto(paidByUserId, amountPaid, splitAmongUserIds))
+                    val splitType = SplitType.valueOf(args[index++])
+                    when (splitType) {
+                        SplitType.EQUAL -> {
+                            commandDtoList.add(EqualExpensesDto(paidByUserId, amountPaid, splitAmongUserIds))
                         }
-                        ExpenseType.EXACT -> {
+                        SplitType.EXACT -> {
                             val exactSplitAmount = mutableListOf<Double>()
                             repeat(splitAmongUsersCount) {
                                 exactSplitAmount.add(args[index++].toDouble())
                             }
-                            commandDtoList.add(AddExactExpensesDto(paidByUserId, amountPaid, splitAmongUserIds, exactSplitAmount))
+                            commandDtoList.add(ExactExpensesDto(paidByUserId, amountPaid, splitAmongUserIds, exactSplitAmount))
                         }
-                        ExpenseType.PERCENT -> {
+                        SplitType.PERCENT -> {
                             val splitPercent = mutableListOf<Double>()
                             repeat(splitAmongUsersCount) {
                                 splitPercent.add(args[index++].toDouble())
                             }
-                            commandDtoList.add(AddPercentExpensesDto(paidByUserId, amountPaid, splitAmongUserIds, splitPercent))
+                            commandDtoList.add(PercentExpensesDto(paidByUserId, amountPaid, splitAmongUserIds, splitPercent))
+                        }
+                        SplitType.SHARE -> {
+                            val splitShare = mutableListOf<Int>()
+                            repeat(splitAmongUsersCount) {
+                                splitShare.add(args[index++].toInt())
+                            }
+                            commandDtoList.add(ShareExpensesDto(paidByUserId, amountPaid, splitAmongUserIds, splitShare))
                         }
                     }
                 }

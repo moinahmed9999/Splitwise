@@ -1,11 +1,11 @@
 package dto
 
 import model.enums.CommandType
-import model.enums.ExpenseType
+import model.enums.SplitType
 
-abstract class AddExpenseDto(
+abstract class ExpenseDto(
     open val paidByUserId: String,
     open val amount: Double,
     open val splitAmongUserIds: List<String>,
-    val expenseType: ExpenseType,
+    val splitType: SplitType,
 ) : CommandDto(CommandType.ADD_EXPENSE)
